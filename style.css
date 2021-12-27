@@ -3,7 +3,7 @@ body {
 }
 
 .game_board {
-    position: absolute;
+    
     display: grid;
     justify-content: center;
     align-content: center;
