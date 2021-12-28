@@ -2,7 +2,7 @@
 const newGameButton = document.querySelector('#new_game');
 const helpButton = document.querySelector('#help');
 const scoreBoard = document.querySelector('#score_board');
-const finalMessage = document.querySelector('.final_message');
+const finalMessage = document.querySelector('#final_message');
 const winningCombinations = [
     [0,1,2], //rows
     [3,4,5],
@@ -68,3 +68,11 @@ gameBoard.boxes.forEach((box)=> {
     
 });
 
+//append child to finalMessage html element
+let winningMessageTxt = document.createElement('div');
+winningMessageTxt.setAttribute('id', 'txt');
+finalMessage.appendChild(winningMessageTxt);
+
+//create a variable with the value of the final message element text
+let winningTxt = document.querySelector('#txt').innerText;
+console.log(winningTxt);
