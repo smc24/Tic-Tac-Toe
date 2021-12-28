@@ -3,35 +3,65 @@ const newGameButton = document.querySelector('#new_game');
 const helpButton = document.querySelector('#help');
 const scoreBoard = document.querySelector('#score_board');
 const finalMessage = document.querySelector('.final_message');
-
+const winningCombinations = [
+    [0,1,2], //rows
+    [3,4,5],
+    [6,7,8],
+    [0,3,6], //colomns
+    [1,4,7],
+    [3,5,8],
+    [0,4,8], //diagonals
+    [2,4,6]
+]
 
 // Create the Board
-class boxValues {
+class BoxValues {
     constructor(boxes) {
-        this.boxes = {
-            boxes:Array(9).fill(null),
-            xIsNext: true,
-        }
+        this.boxes = boxes;
+        this.xIsNext = true;
     }
-    playersChoice(i){
-        const boxes = this.boxes.boxes;
-        boxes[i] = this.boxes.xIsNext ? 'X':'O';
-        this.holdPlace({
-            boxes: boxes,
-            xIsNext: !this.boxes.xIsNext,
-        });
+    playersChoice(element){
+        const boxes = this.boxes;
+        element.innerText = this.xIsNext ? 'X':'O'; //displays the x or o
+        this.boxes = boxes;
+        this.xIsNext = !this.xIsNext; //displays 'O'
     }   
+    
+    //check for a win, lose, cat
+    //Web Dev Simplified YT source
+    whoWins(currentCharacter){
+        const boxElements = this.boxes;
+        console.log(currentCharacter);
+        return winningCombinations.some((combo)=> { //Checks to see if at least one combination is true
+            console.log(combo);
+            return combo.every((index)=> {
+                console.log(index);
+                boxElements[index].innerText===currentCharacter; //grabs value at the given index
+                
+            }
+            )
+        })
+    }
+    
 }
-const gameBoard = new boxValues();
+//Connect to div.box elements 
+const gameBoard = new BoxValues(document.querySelectorAll('.box'));
+console.log(gameBoard.boxes);
 
-console.log(gameBoard);
 
+//Let's get the event listeners going
+gameBoard.boxes.forEach((box)=> {
+    box.addEventListener('click', (event)=> {
+        console.log(event.target);
+        gameBoard.playersChoice(event.target);
+       
+        //added to keep track of values for winning combinations
+        // if(gameBoard.whoWins(event.target)){
+        //     console.log('winner');
+        // }; 
+        console.log(gameBoard.whoWins(event.target.innerText));
+        // gameBoard.whoWins(event.target.innerText);
+    });
+    
+});
 
-
-// for(let i=0; i<9; i++){
-//     let div = document.createElement('div');
-//     div.setAttribute('class', 'box');
-//     // document.getElementById('[#game_board]').appendChild(div);
-// }
-// let box = document.querySelectorAll('.box');
-// console.log(box);
