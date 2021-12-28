@@ -31,12 +31,12 @@ class BoxValues {
     //Web Dev Simplified YT source
     whoWins(currentCharacter){
         const boxElements = this.boxes;
-        console.log(currentCharacter);
+        console.log(currentCharacter);//make sure it's displaying the character alone
         return winningCombinations.some((combo)=> { //Checks to see if at least one combination is true
             console.log(combo);
-            return combo.every((index)=> {
+            return combo.every((index)=> { // iterates through through the combo to find 3 in a row
                 console.log(index);
-                boxElements[index].innerText===currentCharacter; //grabs value at the given index
+                return boxElements[index].innerText===currentCharacter; //grabs value at the given index
                 
             }
             )
@@ -56,11 +56,14 @@ gameBoard.boxes.forEach((box)=> {
         gameBoard.playersChoice(event.target);
        
         //added to keep track of values for winning combinations
-        // if(gameBoard.whoWins(event.target)){
-        //     console.log('winner');
-        // }; 
-        console.log(gameBoard.whoWins(event.target.innerText));
-        // gameBoard.whoWins(event.target.innerText);
+        //need to display winning message
+        if(gameBoard.whoWins(event.target.innerText)){
+            console.log('winner');
+        } else {
+            console.log('Tie')
+            
+        } 
+        
     });
     
 });
