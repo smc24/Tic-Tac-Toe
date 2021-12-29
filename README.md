@@ -1,10 +1,12 @@
 # Project #1: Tic Tac Toe
-## Technologies Used
--HTML
--CSS
--JavaScript
+## Description
+What I created here is a really simple game of tic tac toe. Built for the purpose of distracting little children or to pass time.
+
+Here's the link to my game:
+([file:///C:/Users/dbsha/sei/projects/tic-tac-toe/Tic-Tac-Toe/index.html])
+
 ## User Stories
-> As a user, I should be able to start a new tic tac toe game
+ >As a user, I should be able to start a new tic tac toe game
 	Description: (JS) => a function that restarts the game when called
 		     (HTML) => 'start new' element
 		     (CSS) => should be placed below the game board
@@ -25,3 +27,5 @@
 	Description: (JS) => make sure there is a break at the end of the function; 
 >As a user, I should be able to play the game again without refreshing the page
 	Description: (JS)=> add .preventDefault
+
+## 
