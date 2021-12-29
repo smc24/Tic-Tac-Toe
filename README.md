@@ -2,8 +2,7 @@
 ## Description
 What I created here is a really simple game of tic tac toe. Built for the purpose of distracting little children or to pass time.
 
-Here's the link to my game:
-([file:///C:/Users/dbsha/sei/projects/tic-tac-toe/Tic-Tac-Toe/index.html])
+Here's the link to my game: [Sasha's Tic Tac Toe](file:///C:/Users/dbsha/sei/projects/tic-tac-toe/Tic-Tac-Toe/index.html)
 
 ## User Stories
  >As a user, I should be able to start a new tic tac toe game
