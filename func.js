@@ -1,7 +1,7 @@
 //Create your variables prior for easier access
 const newGameButton = document.querySelector('#new_game');
 const helpButton = document.querySelector('#help');
-const scoreBoard = document.querySelector('#score_board');
+// const scoreBoard = document.querySelector('#score_board');
 const finalMessage = document.querySelector('#final_message');
 const winningCombinations = [
     [0,1,2], //rows
@@ -44,8 +44,8 @@ class BoxValues {
     }
 
     //now to end the game. At this point the user should no longer be able to play and the final message should be displayed.
-    letsEndThis(tie){
-       if(tie){
+    letsEndThis(verdict){
+       if(verdict==='X'){
 
        } else {
            alert(`Ayyee Congrats ${this.xIsNext ? 'X':'O'}! You win!`);
@@ -53,15 +53,16 @@ class BoxValues {
    }
 
    newGame(){
-    //    console.log('working');
-       return new BoxValues;
+       console.log(BoxValues.boxes);
+       let defaultValues = this.boxes;
+       return BoxValues.boxes;
    }
 }
    
    
    
 //Connect to div.box elements 
-const gameBoard = new BoxValues(document.querySelectorAll('.box'));
+let gameBoard = new BoxValues(document.querySelectorAll('.box'));
 // console.log(gameBoard.boxes);
 
 
@@ -79,32 +80,42 @@ gameBoard.boxes.forEach((box)=> {
         //need to display winning message
         if(gameBoard.whoWins(event.target.innerText)){
             
-            // box.removeEventListener('click', (event)=> {
+            // box.removeEventListener('click', (event)=> { //possible way to end the game
             //     console.log(event.target);
             //     if(event.target.innerText==='') {
-            //         gameBoard.playersChoice(event.target)
-            //     }
-            // }, false)
-
-            // gameBoard.letsEndThis(event.target);
-            console.log('winner');
-        } else {
-            console.log('Tie')
+                //         gameBoard.playersChoice(event.target)
+                //     }
+                // }, false)
+                
+                gameBoard.letsEndThis(event.target);
+                console.log('winner');
+            } else {
+                console.log('Tie')
+                
+            } 
             
-        } 
+        });
         
     });
     
-});
-
-//append child to finalMessage html element
-let winningMessageTxt = document.createElement('div');
-winningMessageTxt.setAttribute('id', 'txt');
-finalMessage.appendChild(winningMessageTxt);
-
-//create a variable with the value of the final message element text
-let winningTxt = document.querySelector('#txt').innerText;
-console.log(winningTxt); //just to validate
-
-//let's get those buttons percolatin'
-console.log(newGameButton.addEventListener('click', gameBoard.newGame()));
+    //append child to finalMessage html element
+    let winningMessageTxt = document.createElement('div');
+    winningMessageTxt.setAttribute('id', 'txt');
+    finalMessage.appendChild(winningMessageTxt);
+    
+    //create a variable with the value of the final message element text
+    let winningTxt = document.querySelector('#txt').innerText;
+    console.log(winningTxt); //just to validate
+    
+    //let's get those buttons percolatin'
+    function newGame(){
+        console.log('working');
+        return this.boxes;
+    }
+    newGameButton.addEventListener('click', gameBoard.newGame());
+    
+    function instructions(){
+        alert("No worries! Try and get three in a row before your opponent. If your opponent has two in a row, mark the third spot before they do! Hint: Figure out the pattern and you'll never lose");
+    }
+    
+    helpButton.addEventListener('click', instructions);
